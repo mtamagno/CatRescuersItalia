@@ -20,8 +20,7 @@ const UserSchema = new Schema({
   },
 
   avatar: {
-    type: String,
-    required: true
+    type: String
   },
 
   date: {
@@ -30,8 +29,7 @@ const UserSchema = new Schema({
   },
 
   birthday: {
-    type: Date,
-    required: true
+    type: Date
   },
 
   sex: {
