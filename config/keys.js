@@ -1,4 +1,5 @@
 module.exports = {
   mongoURI:
-    "mongodb://Chrocchan:mtm5041chr@ds137661.mlab.com:37661/catrescuersitalia"
+    "mongodb://Chrocchan:mtm5041chr@ds137661.mlab.com:37661/catrescuersitalia",
+  secretOrKey: "KyL8734!"
 };
