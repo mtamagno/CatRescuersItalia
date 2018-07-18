@@ -13,6 +13,12 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+
+  status: {
+    type: String,
+    required: true,
+    max: 40
+  },
   WebSite: {
     type: String
   },
@@ -37,6 +43,11 @@ const ProfileSchema = new Schema({
     instagram: {
       type: String
     }
+  },
+
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
