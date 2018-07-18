@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
+// Load input validation
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 //Load user model
 
 const User = require("../../models/User");
@@ -21,6 +24,13 @@ router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 // @access    pubblic route
 
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  //check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "email already exists" });
@@ -30,6 +40,7 @@ router.post("/register", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        password2: req.body.password2,
         birthday: req.body.birthday,
         sex: req.body.sex,
         avatar
@@ -54,6 +65,13 @@ router.post("/register", (req, res) => {
 // @access    pubblic route
 
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  //check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
@@ -61,7 +79,8 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     //check for users
     if (!user) {
-      return res.status(404).json({ email: "Email not found" });
+      errors.email = "User not found";
+      return res.status(404).json({ email: errors });
     }
 
     //check password
@@ -85,7 +104,8 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ password: "Password incorrect" });
+        errors.password = "Password incorrect";
+        return res.status(400).json({ password: errors });
       }
     });
   });
@@ -102,7 +122,8 @@ router.get(
     res.json({
       id: req.user.id,
       name: req.user.name,
-      avatar: req.user.avatar
+      avatar: req.user.avatar,
+      email: req.user.email
     });
   }
 );
