@@ -6,14 +6,67 @@ const passport = require("passport");
 //Load Validation
 
 const validateProfileInput = require("../../validation/profile");
+const validateCatsInput = require("../../validation/cats");
 
 //Load Profile Model
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
-// @route GET api/profile/test
-// @desc Tests profiles route
+// @route GET api/profile/handle/:handle
+// @desc Get Profile by Handle
 // @access pubblic route
+
+router.get("/handle/:handle", (req, res) => {
+  const errors = {};
+  Profile.findOne({ handle: req.params.handle })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.noprofile = "There is no profile for this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err => res.status(404));
+});
+
+// @route GET api/profile/user/:user_id
+// @desc Get Profile by user ID
+// @access pubblic route
+
+router.get("/user/:user_id", (req, res) => {
+  const errors = {};
+  Profile.findOne({ user: req.params.user_id })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.noprofile = "There is no profile for this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err =>
+      res.status(404).json({ profile: "there is no profile for this ID" })
+    );
+});
+
+// @route GET api/profile/all
+// @desc Get all profiles
+// @access pubblic route
+
+router.get("/all", (req, res) => {
+  Profile.find()
+    .populate("user", ["name", "avatar"])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = "There are no profiles";
+        return res.status(404).json(errors);
+      }
+
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json({ profile: "there are no profiles" }));
+});
 
 //router.get("/test", (req, res) => res.json({ msg: "Profile Works" }));
 
@@ -93,6 +146,40 @@ router.post(
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
+    });
+  }
+);
+
+// @route GET api/cats
+// @desc Add cats
+// @access Private
+
+router.post(
+  "/cats",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //Input validation
+    const { errors, isValid } = validateCatsInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors) + res.body;
+    }
+
+    //Cats creation
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newCat = {
+        name: req.body.name,
+        color: req.body.color,
+        description: req.body.description,
+        fivN: req.body.fivM,
+        felvN: req.body.felvN,
+        race: req.body.race,
+        vaxins: req.body.vaxins
+      };
+
+      // Add to cat array
+      profile.cats.unshift(newCat);
+      profile.save().then(profile => res.json(profile));
     });
   }
 );

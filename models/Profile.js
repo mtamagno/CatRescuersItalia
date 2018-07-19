@@ -26,7 +26,7 @@ const ProfileSchema = new Schema({
     type: String
   },
 
-  Bio: {
+  bio: {
     type: String
   },
 
@@ -44,6 +44,44 @@ const ProfileSchema = new Schema({
       type: String
     }
   },
+  cats: [
+    {
+      name: {
+        type: String,
+        required: true
+      },
+      color: {
+        type: String,
+        required: true
+      },
+
+      description: {
+        type: String,
+        required: true
+      },
+      fivN: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
+      felvN: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
+      race: {
+        type: String,
+        required: true
+      },
+      vaxins: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
 
   date: {
     type: Date,
