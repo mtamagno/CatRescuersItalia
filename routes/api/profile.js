@@ -184,4 +184,46 @@ router.post(
   }
 );
 
+// @route POST api/profile/cats/:cat_id
+// @desc Delete cat
+// @access Private
+
+router.delete(
+  "/cats/:cat_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    //Cats creation
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        //Get ID to remove
+        const removeIndex = profile.cats
+          .map(item => item.id)
+          .indexOf(req.params.cat_id);
+
+        //Splice out of array
+        profile.cats.splice(removeIndex, 1);
+
+        //Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route POST api/profile
+// @desc Delete user and profile
+// @access Private
+
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove((_id = req.user.id)).then(() =>
+        res.json({ success: true })
+      );
+    });
+  }
+);
+
 module.exports = router;
