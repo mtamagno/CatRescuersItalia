@@ -46,6 +46,9 @@ const ProfileSchema = new Schema({
   },
   cats: [
     {
+      photo: {
+        type: String
+      },
       name: {
         type: String,
         required: true
@@ -58,6 +61,13 @@ const ProfileSchema = new Schema({
       age: {
         type: Number,
         required: true
+      },
+
+      telephone: {
+        Type: String
+      },
+      email: {
+        Type: String
       },
 
       description: {

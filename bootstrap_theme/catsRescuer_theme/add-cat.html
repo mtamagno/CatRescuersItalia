@@ -52,7 +52,7 @@
     </div>
   </nav>
 
-  <!-- Add Experience -->
+  <!-- Add Cats -->
   <div class="section add-experience">
     <div class="container">
       <div class="row">
@@ -61,11 +61,21 @@
             Go Back
           </a>
           <h1 class="display-4 text-center">Add a new Cat</h1>
+          <hr>
           <p class="lead text-center">Add any new cat in need you know of</p>
           <small class="d-block pb-3">* = required field</small>
+
+          <!-- Personal Info -->
+
+
           <form action="add-education.html">
+            <h3 style="margin-top:10%;margin-bottom: 3%">Personal Info</h3>
+            <hr>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="* Name" name="name" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="* Photo-link" name="photo" required />
             </div>
             <div class="form-group">
               <input type="text" class="form-control form-control-lg" placeholder="* Color" name="color" required />
@@ -77,34 +87,52 @@
               <input type="text" class="form-control form-control-lg" placeholder="Race" name="race" />
             </div>
 
+            <!-- Vaxins -->
+
+            <h3 style="margin-top:10%;margin-bottom: 3%">Vaxins</h3>
+            <hr>
             <div class="form-check mb-4">
-              <h6>Fiv Felv</h6>
               <input style="margin-right:5%" class="form-check-input" type="checkbox" name="fivN" value="" id="fivN" />
-              <label style="margin-right:5%" class="form-check-label" for="current">
+              <label style="margin-right:5%" class="form-check-label" for="fivN">
                 FivN
               </label>
               <input style="margin-left:7%" class="form-check-input" type="checkbox" name="felvN" value="" id="felvN" />
-              <label style="margin-left:10%" class="form-check-label" for="current">
+              <label style="margin-left:10%" class="form-check-label" for="felvN">
                 FelvN
               </label>
-            </div>
-
-            <div class="form-check mb-4">
-              <h6>Need Adoption</h6>
-              <input style="margin-right:5%" class="form-check-input" type="checkbox" name="needAdoption" value="" id="needAdoption" />
-              <label style="margin-right:5%" class="form-check-label" for="current">
-                Adoptable
-              </label>
-            </div>
-
-            <div class="form-group">
-              <textarea class="form-control form-control-lg" placeholder="Cat Description" name="description"></textarea>
-              <small class="form-text text-muted">Friendly, loonely, etc</small>
             </div>
 
             <div class="form-group">
               <textarea class="form-control form-control-lg" placeholder="Vaxins" name="vaxins"></textarea>
               <small class="form-text text-muted">Add a list of vaxins the cat have done if known</small>
+            </div>
+
+
+            <!-- Additional Info -->
+
+            <h3 style="margin-top:10%;margin-bottom: 3%">Additional info</h3>
+            <hr>
+            <div class="form-group">
+              <textarea class="form-control form-control-lg" placeholder="Cat Description" name="description"></textarea>
+              <small class="form-text text-muted">Friendly, loonely, etc</small>
+            </div>
+
+            <div class="form-check mb-4">
+              <input style="margin-right:5%" class="form-check-input" type="checkbox" name="needAdoption" value="" id="needAdoption" />
+              <label style="margin-right:5%" class="form-check-label" for="needAdoption">
+                Adoptable
+              </label>
+            </div>
+
+
+            <!-- Contacts -->
+
+            <h3 style="margin-top:10%;margin-bottom: 3%">Contacts</h3>
+            <hr>
+            <div style="margin-bottom: 10%" class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Telephone" name="telephone" required />
+              <input type="text" class="form-control form-control-lg" placeholder="Email" name="email" required />
+              <small class="form-text text-muted">Add a contact to help him be rescued</small>
             </div>
 
             <input type="submit" class="btn btn-info btn-block mt-4" />

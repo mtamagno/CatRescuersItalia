@@ -170,11 +170,16 @@ router.post(
       const newCat = {
         name: req.body.name,
         color: req.body.color,
+        age: req.body.age,
+        telephone: req.body.telephone,
+        email: req.body.email,
         description: req.body.description,
         fivN: req.body.fivM,
         felvN: req.body.felvN,
         race: req.body.race,
-        vaxins: req.body.vaxins
+        vaxins: req.body.vaxins,
+        needAdoption: req.body.needAdoption,
+        photo: req.body.photo
       };
 
       // Add to cat array
