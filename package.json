@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "star": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Marco Tamagno",
   "license": "ISC",
@@ -15,16 +16,25 @@
     "express": "^4.16.3",
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.3",
+    "mongoose": "^5.2.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^10.4.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.2"
+    "nodemon": "^1.18.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mtamagno/CatRescuersItalia.git"
-  }
+    "url": "git+https://github.com/mtamagno/CatRescuersItalia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mtamagno/CatRescuersItalia/issues"
+  },
+  "homepage": "https://github.com/mtamagno/CatRescuersItalia#readme",
+  "keywords": [
+    "cat",
+    "rescuer",
+    "italia"
+  ]
 }

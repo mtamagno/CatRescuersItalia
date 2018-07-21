@@ -55,6 +55,11 @@ const ProfileSchema = new Schema({
         required: true
       },
 
+      age: {
+        type: Number,
+        required: true
+      },
+
       description: {
         type: String,
         required: true
@@ -67,6 +72,11 @@ const ProfileSchema = new Schema({
       felvN: {
         type: Boolean,
         required: true,
+        default: false
+      },
+
+      needAdoption: {
+        type: Boolean,
         default: false
       },
       race: {
