@@ -19,7 +19,7 @@ const User = require("../../models/User");
 
 router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 
-// @route GET api/users/register
+// @route POST api/users/register
 // @desc      Register a user
 // @access    pubblic route
 
@@ -35,7 +35,11 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "email already exists" });
     } else {
-      avatar = gravatar.url(req.body.email, { s: "200", r: "pg", d: "mm" });
+      const avatar = gravatar.url(req.body.email, {
+        s: "200",
+        r: "pg",
+        d: "mm"
+      });
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
