@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact me - Marco Tamagno</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+  <meta name="description" content="Marco Tamagno's Personal WebSite contact me whenever you want" />
+  <meta charset="utf-8" />
+<!-- Custom CSS -->
+<link href="css/full-width-pics.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap Core CSS -->
+</head>
+<body class = "contact">
+  <?php include_once("analyticstracking.php") ?>
+  <header class="image-bg-fluid-height">
+      <img class="img-responsive img-center" style="margin-top: 50px;"src="img/logo.png" alt="">
+      <div class="name">Marco Tamagno</div>
+      <div class="profession">Software Developer</div>
+  </header>
+  <nav>
+    <ul>
+      <li class="start-list"></li>
+      <li class="home"><a href="index.html" class="home"><div class="text">Home</div></a></li>
+      <li class="start-list"></li>
+      <li class="about"><a href="about.html" class="about"><div class="text">About me</div></a></li>
+      <li class="start-list"></li>
+      <li class="works"><a href="works.html" class="works"><div class="text">Works</div></a></li>
+      <li class="start-list"></li>
+      <li class="Contact"><a href="contact.html" class="contact"><div class="text">Contact me</div></a></li>
+      <li class="start-list"></li>
+    </ul>
+  </nav>
+  <div class="Contact-me">
+    <div class="Description"><div class="Description-name">How to contact me</div><div class="Description-text">By Email
+<p>
+      Email: marco@tamagno.it</div>
+      <br>
+          By Telephone
+          <p>
+              Cellphone: 3345600490
+</div>
+  </div>
+  </div>
+  <div class="Email-Form">
+
+      <div class="Email-Form-Title">
+          Email-Form
+        </div>
+
+    <div class="Email-Form-Description">
+
+<h2>Send me an e-mail</h2>
+
+<form action="email.php" method="POST" target="_blank" onsubmit="inviata()" id="mail_form" >
+Name:<br>
+<input type="text" name="name"size="50" style="text-align:center" required placeholder="type your name"><br>
+<br>
+E-mail:<br>
+<input type="email" name="mail"size="50" style="text-align:center" required placeholder="type your email"><br>
+<br>
+Comment:<br>
+<textarea rows="15" cols="75" name="comment" style="padding:2%"></textarea><br><br>
+<input type="submit" value="Send">
+<input type="reset" value="Reset">
+</form>
+    </div>
+
+</div>
+<div class="footer">Copyright &copy; 2016 by Marco Tamagno. Proudly created with Notepad.
+  <div style="display: none">
+	<script type="text/javascript" language="JavaScript" src="http://codice.shinystat.com/cgi-bin/getcod.cgi?USER=marcotamagno"></script><noscript><a href="http://www.shinystat.com/it" target="_top"><img src="http://www.shinystat.com/cgi-bin/shinystat.cgi?USER=marcotamagno" border="0" alt="" /></a></noscript></div>
+</div>
+</body>
+</html>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85073146-1', 'auto');
+  ga('send', 'pageview');
+
+  function inviata(){
+    swal("Good job!", "La tua mail e' stata inviata correttamente!", "success");
+
+  }
+
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
