@@ -33,7 +33,7 @@ class mainDashboard extends Component {
             <p className="lead text-muted">Hey {user.name} </p>
             <Spinner />
             <p>you did not create your profile yet</p>
-            <Link to="/ceate-profile" className="btn btn-lg brn-info">
+            <Link to="/create-profile" className="btn btn-lg brn-info">
               Create it here!
             </Link>
           </div>
