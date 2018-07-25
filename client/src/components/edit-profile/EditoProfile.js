@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/inputGroup";
 import TextFieldGroup from "../common/textFieldGroup";
-import { createProfile } from "../../actions/profileAction";
+import { createProfile, getCurrentProfile } from "../../actions/profileAction";
 import { withRouter } from "react-router-dom";
+import isEmpty from "../../validation/is_empty";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -29,9 +30,47 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      profile.handle = !isEmpty(profile.handle) ? profile.handle : "";
+      profile.WebSite = !isEmpty(profile.WebSite) ? profile.WebSite : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : "";
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : "";
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : "";
+
+      //Set component fields state
+      this.setState({
+        handle: profile.handle,
+        WebSite: profile.WebSite,
+        location: profile.location,
+        bio: profile.bio,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        status: profile.status,
+        youtube: profile.youtube,
+        instagram: profile.instagram
+      });
     }
   }
 
@@ -98,7 +137,6 @@ class CreateProfile extends Component {
           />
         </div>
       );
-    } else {
     }
 
     return (
@@ -110,7 +148,7 @@ class CreateProfile extends Component {
                 Tell us more about yourself
               </h1>
               <p className="lead text-center">
-                This procedure will create your profile!
+                This procedure will edit your profile!
               </p>
               <small className="d-block pb-3">* = required</small>
 
@@ -158,12 +196,12 @@ class CreateProfile extends Component {
                 <div className="mb-3">
                   <button
                     type="button"
+                    className="btn btn-light"
                     onClick={() => {
                       this.setState(prevState => ({
                         displaySocialInputs: !prevState.displaySocialInputs
                       }));
                     }}
-                    className="brn brn-light"
                   >
                     Add a Social
                   </button>
@@ -184,6 +222,8 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isReequired
 };
@@ -195,5 +235,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile }
+  { createProfile, getCurrentProfile }
 )(withRouter(CreateProfile));

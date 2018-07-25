@@ -6,7 +6,7 @@ const InputGroup = ({
   name,
   placeholder,
   value,
-  error,
+  errors,
   icon,
   type,
   onChange
@@ -20,14 +20,14 @@ const InputGroup = ({
       </div>
       <input
         className={classnames("form-control form-control-lg", {
-          "is-invalid": error
+          "is-invalid": errors
         })}
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
+      {errors && <div className="invalid-feedback">{errors}</div>}
     </div>
   );
 };
@@ -38,7 +38,7 @@ InputGroup.propTypes = {
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
   type: PropTypes.string.isRequired,
-  error: PropTypes.string,
+  errors: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 

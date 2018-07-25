@@ -113,7 +113,7 @@ router.post(
     if (req.body.status) profileFields.status = req.body.status;
     if (req.body.WebSite) profileFields.WebSite = req.body.WebSite;
     if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.Bio) profileFields.Bio = req.body.Bio;
+    if (req.body.bio) profileFields.bio = req.body.bio;
 
     //Social handling
 

@@ -18,6 +18,8 @@ import Login from "./components/auth/Login";
 import store from "./store";
 import mainDashboard from "./components/dashboard/mainDashboard";
 import CreateProfile from "./components/createProfile/CreateProfile";
+import EditProfile from "./components/edit-profile/EditoProfile";
+import AddCats from "./components/add-cats/AddCats";
 
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileAction";
@@ -68,6 +70,16 @@ class App extends Component {
                   path="/createProfile"
                   component={CreateProfile}
                 />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/editProfile"
+                  component={EditProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/addCats" component={AddCats} />
               </Switch>
             </div>
             <Footer />

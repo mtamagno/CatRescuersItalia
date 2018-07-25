@@ -19,7 +19,7 @@ module.exports = function validateProfileInput(data) {
     errors.status = "Profile status is required";
   }
 
-  if (!isEmpty(data.websites)) {
+  if (!isEmpty(data.WebSite)) {
     if (!Validator.isURL(data.WebSite)) {
       errors.WebSite = "Not a valid url";
     }

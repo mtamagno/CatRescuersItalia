@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileAction";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileAction";
 import Spinner from "../common/Spinner";
+import ProfileAction from "../dashboard/ProfileAction";
+import Cats from "./Cats";
 
 class mainDashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
+
+  onDeleteClick(e) {
+    this.props.deleteAccount();
+  }
+
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
@@ -19,7 +26,23 @@ class mainDashboard extends Component {
     } else {
       mainDashboardContent = <h2> Hellow </h2>;
       if (Object.keys(profile).length > 0) {
-        mainDashboardContent = <h4> DISPLAY PROFILE </h4>;
+        mainDashboardContent = (
+          <div>
+            <p className="lead text-muted">
+              Hey <Link to={`/profile/${profile.handle}`}>{user.name} </Link>
+            </p>
+            <ProfileAction />
+            <Cats cats={profile.cats} />
+            {/*TODO: cats*/}
+            <div style={{ marginBottom: "60px" }} />
+            <button
+              onClick={this.onDeleteClick.bind(this)}
+              className="btn btn-danger"
+            >
+              Delete My Account
+            </button>
+          </div>
+        );
       } else {
         mainDashboardContent = (
           <div
@@ -44,7 +67,7 @@ class mainDashboard extends Component {
     return (
       <div className="dashboard">
         <div className="container">
-          <div cassName="row">
+          <div className="row">
             <div className="col-md-12">
               <h1 className="display-4">Dashboard</h1>
               {mainDashboardContent}
@@ -56,8 +79,9 @@ class mainDashboard extends Component {
   }
 }
 
-mainDashboard.PropTypes = {
+mainDashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -69,5 +93,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, deleteAccount }
 )(mainDashboard);
