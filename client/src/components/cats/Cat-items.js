@@ -3,25 +3,23 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is_empty";
 
-class ProfileItem extends Component {
+class CatItem extends Component {
   render() {
-    const { profile } = this.props;
-
+    const { cats } = this.props;
+    console.log("hey " + cats);
     return (
       <div className="card card-body bg-ligh mb-3">
         <div className="row">
           <div className="col-2">
-            <img src={profile.user.avatar} alt="" className="rounded-circle" />
+            <img src={cats.photo} alt="" className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h4>{profile.user.name}</h4>
-            <p>{profile.status}</p>
+            <h4>{cats.name}</h4>
+            <p>{cats.status}</p>
             <p>
-              {isEmpty(profile.location) ? null : (
-                <span>{profile.location}</span>
-              )}
+              {isEmpty(cats.location) ? null : <span>{cats.location}</span>}
             </p>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-info">
+            <Link to={`/cats/${cats.handle}`} className="btn btn-info">
               More Here!
             </Link>
           </div>
@@ -31,8 +29,8 @@ class ProfileItem extends Component {
   }
 }
 
-ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+CatItem.propTypes = {
+  cats: PropTypes.object.isRequired
 };
 
-export default ProfileItem;
+export default CatItem;

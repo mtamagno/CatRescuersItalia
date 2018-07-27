@@ -22,6 +22,7 @@ import EditProfile from "./components/edit-profile/EditoProfile";
 import AddCats from "./components/add-cats/AddCats";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/Profile/Profile";
+import Cats from "./components/cats/Cats";
 
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileAction";
@@ -61,6 +62,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/cats" component={Cats} />
               <Switch>
                 <PrivateRoute
                   exact

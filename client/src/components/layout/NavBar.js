@@ -73,6 +73,12 @@ class NavBar extends Component {
                   Rescuers
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/cats">
+                  {" "}
+                  Cats
+                </Link>
+              </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
