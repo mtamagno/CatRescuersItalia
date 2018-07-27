@@ -1,5 +1,6 @@
 import {
   GET_PROFILE,
+  GET_PROFILE_CATS,
   GET_PROFILES,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
@@ -8,7 +9,8 @@ import {
 const initialState = {
   profile: null,
   profiles: null,
-  loading: false
+  profileCats: null,
+  loading: true
 };
 
 export default function(state = initialState, action) {
@@ -25,6 +27,13 @@ export default function(state = initialState, action) {
         loading: false
       };
 
+    case GET_PROFILE_CATS:
+      return {
+        ...state,
+        profileCats: action.payload,
+        loading: false
+      };
+
     case GET_PROFILES:
       return {
         ...state,
@@ -36,6 +45,7 @@ export default function(state = initialState, action) {
         ...state,
         profile: null
       };
+
     default:
       return state;
   }

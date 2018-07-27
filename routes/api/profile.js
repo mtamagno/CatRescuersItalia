@@ -68,6 +68,23 @@ router.get("/all", (req, res) => {
     .catch(err => res.status(404).json({ profile: "there are no profiles" }));
 });
 
+// @route GET api/profile/all/cats
+// @desc Get all profiles
+// @access pubblic route
+
+router.get("/all/cats", (req, res) => {
+  Profile.find({}, { cats: 1 })
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = "There are no profiles";
+        return res.status(404).json(errors);
+      }
+
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 //router.get("/test", (req, res) => res.json({ msg: "Profile Works" }));
 
 // @route GET api/profile
@@ -197,21 +214,9 @@ router.delete(
   "/cats/:cat_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    //Cats creation
-    Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        //Get ID to remove
-        const removeIndex = profile.cats
-          .map(item => item.id)
-          .indexOf(req.params.cat_id);
-
-        //Splice out of array
-        profile.cats.splice(removeIndex, 1);
-
-        //Save
-        profile.save().then(profile => res.json(profile));
-      })
-      .catch(err => res.status(404).json(err));
+    Cats.findOneAndRemove((_id = req.params._id)).then(() =>
+      res.json({ success: true })
+    );
   }
 );
 

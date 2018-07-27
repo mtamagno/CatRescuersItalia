@@ -11,6 +11,7 @@ class AddCats extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      handle: "",
       photo: "",
       name: "",
       color: "",
@@ -41,6 +42,7 @@ class AddCats extends Component {
     e.preventDefault();
     if (isEmpty(this.state.photo)) this.state.photo = "./cat-icon.gif";
     const catData = {
+      handle: this.state.handle,
       photo: this.state.photo,
       name: this.state.name,
       color: this.state.color,
@@ -84,7 +86,14 @@ class AddCats extends Component {
                   Personal Info
                 </h3>
                 <hr />
-
+                <TextFieldGroup
+                  placeholder="* Handle"
+                  name="handle"
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                  error={errors.handle}
+                  info="Cat's Handle"
+                />
                 <TextFieldGroup
                   placeholder="* Name"
                   name="name"

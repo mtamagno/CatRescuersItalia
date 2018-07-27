@@ -1,34 +1,6 @@
 import axios from "axios";
 
-import {
-  GET_PROFILE,
-  GET_PROFILE_CATS,
-  GET_PROFILES,
-  PROFILE_LOADING,
-  SET_CURRENT_USER,
-  CLEAR_CURRENT_PROFILE,
-  GET_ERRORS
-} from "./types";
-
-//GET current profile
-
-export const getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get("/api/profile")
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: {}
-      })
-    );
-};
+import { GET_ALL_CATS } from "./types";
 
 export const getCats = () => dispatch => {
   dispatch(setProfileLoading());
@@ -44,40 +16,6 @@ export const getCats = () => dispatch => {
       dispatch({
         type: GET_PROFILE_CATS,
         payload: {}
-      })
-    );
-};
-
-//GET current getProfileByHandle
-
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get(`/api/profile/handle/${handle}`)
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: null
-      })
-    );
-};
-
-//Create Profile
-
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-    .post("/api/profile", profileData)
-    .then(res => history.push("/dashboard"))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
       })
     );
 };
@@ -115,7 +53,7 @@ export const addCats = (catData, history) => dispatch => {
 
 export const deleteCats = id => dispatch => {
   axios
-    .delete(`/api/profile/cats/${id}`)
+    .delete(`/api/cats/${id}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
