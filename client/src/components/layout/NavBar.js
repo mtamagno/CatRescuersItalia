@@ -32,7 +32,10 @@ class NavBar extends Component {
             LogOut
           </a>
         </li>
-        <li className="nav-item" style={{ verticalAlign: "center" }}>
+        <li
+          className="nav-item"
+          style={{ verticalAlign: "center", height: "45px" }}
+        >
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
