@@ -31,6 +31,8 @@ class NavBar extends Component {
             />{" "}
             LogOut
           </a>
+        </li>
+        <li className="nav-item" style={{ verticalAlign: "center" }}>
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
