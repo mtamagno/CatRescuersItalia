@@ -1,5 +1,5 @@
-module.exports = {
-  mongoURI:
-    "mongodb://Chrocchan:mtm5041chr@ds137661.mlab.com:37661/catrescuersitalia",
-  secretOrKey: "KyL8734!"
-};
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./keys_prod");
+} else {
+  module.exports = require("./keys_dev");
+}
