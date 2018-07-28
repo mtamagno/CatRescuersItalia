@@ -24,7 +24,12 @@
     "mongoose": "^5.2.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "validator": "^10.4.0"
+    "validator": "^10.4.0",
+    "react": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.7.0",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
