@@ -24,6 +24,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/Profile/Profile";
 import Cats from "./components/cats/Cats";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileAction";
@@ -90,6 +91,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/addCats" component={AddCats} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
             </div>
             <Footer />
