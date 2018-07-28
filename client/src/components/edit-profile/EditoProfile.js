@@ -77,6 +77,12 @@ class CreateProfile extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    if (
+      this.state.WebSite.indexOf("http://") <= "-1" &&
+      this.state.WebSite.indexOf("https://") <= "-1"
+    )
+      this.state.WebSite = "https://" + this.state.WebSite;
+
     const profileData = {
       handle: this.state.handle,
       WebSite: this.state.WebSite,

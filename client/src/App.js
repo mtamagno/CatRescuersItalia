@@ -23,6 +23,7 @@ import AddCats from "./components/add-cats/AddCats";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/Profile/Profile";
 import Cats from "./components/cats/Cats";
+import Posts from "./components/posts/Posts";
 
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileAction";
@@ -69,6 +70,9 @@ class App extends Component {
                   path="/dashboard"
                   component={mainDashboard}
                 />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/feed" component={Posts} />
               </Switch>
               <Switch>
                 <PrivateRoute

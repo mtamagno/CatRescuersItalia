@@ -11,6 +11,7 @@ const validateCatsInput = require("../../validation/cats");
 //Load Profile Model
 const Cats = require("../../models/Cats");
 const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 
 // @route GET api/profile/handle/:handle
 // @desc Get Profile by Handle
@@ -30,8 +31,8 @@ router.get("/cats/catHandle/:handle", (req, res) => {
     .catch(err => res.status(404));
 });
 
-// @route GET api/profile/user/:user_id
-// @desc Get Profile by user ID
+// @route GET api/cat/user/:user_id
+// @desc Get Cat by user ID
 // @access pubblic route
 
 router.get("/user/:user_id", (req, res) => {
@@ -46,6 +47,33 @@ router.get("/user/:user_id", (req, res) => {
       res.json(cat);
     })
     .catch(err => res.status(404).json({ cat: "there is no cat for this ID" }));
+});
+
+// @route GET api/cat/user/:user_id
+// @desc Get Cat by user ID
+// @access pubblic route
+
+router.get("/profile/:handle", (req, res) => {
+  const errors = {};
+  Profile.find({ handle: req.params.handle })
+    .populate("user", "_id")
+    .then(profile => {
+      {
+        userId = profile[0].user._id;
+      }
+      Cats.find({ user: userId })
+        .populate("user", ["name", "avatar"])
+        .then(cat => {
+          if (!cat) {
+            errors.noCat = "There is no cat for this user";
+            res.status(404).json(errors);
+          }
+          res.json(cat);
+        })
+        .catch(err =>
+          res.status(404).json({ cat: "there is no cat for this ID" })
+        );
+    });
 });
 
 // @route GET api/profile/all

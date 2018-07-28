@@ -40,7 +40,7 @@ class AddCats extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if (isEmpty(this.state.photo)) this.state.photo = "./cat-icon.gif";
+    if (isEmpty(this.state.photo)) this.state.photo = "/cat-icon.gif";
     const catData = {
       handle: this.state.handle,
       photo: this.state.photo,
