@@ -79,6 +79,12 @@ class NavBar extends Component {
                   Cats
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/feed">
+                  {" "}
+                  Feed
+                </Link>
+              </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
