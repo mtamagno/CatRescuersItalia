@@ -34,7 +34,7 @@ class NavBar extends Component {
         </li>
         <li
           className="nav-item"
-          style={{ verticalAlign: "center", height: "45px" }}
+          style={{ display: "flex", alignItems: "center", height: "60px" }}
         >
           <Link className="nav-link" to="/dashboard">
             Dashboard
